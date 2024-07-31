@@ -7,9 +7,8 @@ IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
 or implied.
 *********************************************************
  * 
- * Macro Author:      	Ronald Allen
+ * Macro Author:      	R Allen
  *                    	Sr Systems Engineer
- *                    	ronald.allen@exeloncorp.com
  *                    	Exelon Corp
  * 
  * Version 1-0-0
@@ -29,7 +28,7 @@ import xapi from 'xapi';
 
 // Call the IT Service desk Support from the Conference Room//
 // Quick button to call the IT Service Desk for Video Conference Support.//
-const call_service = '18779393566';
+const call_service = '1800xxxxxx';
 
 // This will be the Panel/Page ID used in the UI Extension //
 xapi.Event.UserInterface.Extensions.Panel.Clicked.on(event => {
