@@ -1,0 +1,98 @@
+/********************************************************
+All use of the material herein must be in accordance with the terms of
+the License. All rights not expressly granted by the License are
+reserved. Unless required by applicable law or agreed to separately in
+writing, software distributed under the License is distributed on an "AS
+IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+or implied.
+*********************************************************
+ * 
+ * Macro Author:      	R Allen
+ *                    	Sr Systems Engineer
+ *                    	Exelon Corp
+ * 
+ * Version 1-0-0
+ * 
+ * Release: July 30, 2024
+ * Last Updated: --,--,--
+ *********************************************************
+ * Description:
+ * - This macro allows users to enable and disable the Frame Camera feature in Conference Rooms
+ * 
+ * Requirements
+ * - Minimum RoomOs Version: 11.18.1 (July 2024 Stable Release)
+ * 
+ ********************************************************/
+
+import xapi from 'xapi';
+// Enable and Disable Frames Camera Features./
+
+xapi.Event.UserInterface.Extensions.Widget.Action.on(event => {
+  if (event.Type == 'released') {
+    switch (event.WidgetId) {
+      case 'camFeat~Features~Frames':
+        console.log(event.Value)
+        if (event.Value == 'Disable') {
+          xapi.Command.Cameras.SpeakerTrack.Frames.Deactivate();
+        }
+        if (event.Value == 'Enable') {
+          xapi.Command.Cameras.SpeakerTrack.Frames.Activate();
+        }
+        break;
+    }
+  }
+})
+//Create the Camera Features Button on Home Screen
+async function createpanel () {
+  const xml=`<Extensions>
+ <Panel>
+    <Order>1</Order>
+    <Origin>local</Origin>
+    <Location>HomeScreen</Location>
+    <Icon>Camera</Icon>
+    <Color>#875AE0</Color>
+    <Name>Camera Features</Name>
+    <ActivityType>Custom</ActivityType>
+    <Page>
+      <Name>Camera Features</Name>
+      <Row>
+        <Name>Frames</Name>
+        <Widget>
+          <WidgetId>camFeat~Features~Frames</WidgetId>
+          <Type>GroupButton</Type>
+          <Options>size=4</Options>
+          <ValueSpace>
+            <Value>
+              <Key>Disable</Key>
+              <Name>Disable</Name>
+            </Value>
+            <Value>
+              <Key>Enable</Key>
+              <Name>Enable</Name>
+            </Value>
+          </ValueSpace>
+        </Widget>
+      </Row>
+      <PageId>camFeat~Features</PageId>
+      <Options/>
+    </Page>
+  </Panel>
+</Extensions>
+`
+await xapi.Command.UserInterface.Extensions.Panel.Save ({PanelId:'CamFeat'},xml)
+}
+
+async function updateFramesButton() {
+  const framesState = await xapi.Status.Cameras.SpeakerTrack.State.get()
+
+  if (framesState == 'Frames') {
+    xapi.Command.UserInterface.Extensions.Widget.SetValue({ WidgetId: 'camFeat~Features~Frames', Value: 'Enable' })
+  } else {
+    xapi.Command.UserInterface.Extensions.Widget.SetValue({ WidgetId: 'camFeat~Features~Frames', Value: 'Disable' })
+  }
+}
+async function init (){
+  await createpanel()
+  await updateFramesButton()
+}
+init()
