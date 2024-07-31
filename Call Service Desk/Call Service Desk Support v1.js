@@ -7,9 +7,8 @@ IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
 or implied.
 *********************************************************
  * 
- * Macro Author:      	Ronald Allen
+ * Macro Author:      	R Allen
  *                    	Sr Systems Engineer
- *                    	ronald.allen@exeloncorp.com
  *                    	Exelon Corp
  * 
  * Version 1-0-0
