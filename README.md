@@ -22,7 +22,6 @@ Cisco Systems, Inc.
 [www.cisco.com](http://www.cisco.com)
 [http://developer.cisco.com/site/roomdevices](https://roomos.cisco.com/)
 
-# Disclaimer  
 The sample macros are meant to:  
 Illustrate how to use the Webex Macros on RoomOS video conference Devices.
 Serve as an example of the step-by-step process of building a macro using JavaScript and integration with the device xAPI.
