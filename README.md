@@ -1,3 +1,6 @@
+# Disclaimer
+This page and its contents are intended for Exelon use only. Unauthorized distribution, reproduction, or disclosure is strictly prohibited. All information herein is confidential and subject to Exelon’s internal policies and applicable regulations.
+
 # Exelon Cisco RoomOS Devices - Macros
 Exelon's use of Cisco RoomOS Macros, allow users to customize video conference devices in combination with the User Interface (UI) Extensions.
 
